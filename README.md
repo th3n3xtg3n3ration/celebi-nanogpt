@@ -51,7 +51,19 @@ Checkpoints are saved to:
 Works on Apple Silicon (MPS):
 
 ```bash
-python -m src.sample --config configs/nano.yaml --ckpt out/nano_pretrain/ckpt_step3000.pt --prompt 'Hello!'
+python -m src.sample --config configs/nano.yaml --ckpt out/nano_pretrain/ckpt_step20000.pt --prompt 'Hello!'
+```
+
+Or with more parameters:
+
+```bash
+python -m src.sample --config configs/nano.yaml --ckpt out/nano_pretrain/ckpt_step20000.pt --prompt 'Hello!' --temperature 0.6 --max_new 200
+```
+
+For more consistent and guiding responses, try using a prompt like this:
+
+```bash
+python -m src.sample --config configs/nano.yaml --ckpt out/nano_pretrain/ckpt_step20000.pt --prompt 'Hello! This article is about' --temperature 0.6 --max_new 200
 ```
 
 ---
