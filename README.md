@@ -46,8 +46,12 @@ Checkpoints are saved to:
 
 ## Generate text (Sampling)
 
+> If your shell shows `dquote>`, it means your quotes are unbalanced. Use **single quotes** in zsh.
+
+Works on Apple Silicon (MPS):
+
 ```bash
-python -m src.sample --config configs/nano.yaml --ckpt out/nano_pretrain/ckpt_step3000.pt --prompt "Hello!"
+python -m src.sample --config configs/nano.yaml --ckpt out/nano_pretrain/ckpt_step3000.pt --prompt 'Hello!'
 ```
 
 ---
