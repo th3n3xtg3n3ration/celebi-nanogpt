@@ -15,7 +15,7 @@ model:
   dropout: 0.1
 
 train:
-  max_steps: 20000
+  max_steps: 20000  # More steps generally => better samples (try 20000+ for noticeably better output)
   lr: 3.0e-4
   weight_decay: 0.1
   grad_clip: 1.0
@@ -25,5 +25,5 @@ train:
   out_dir: out/nano_pretrain
 
 sample:
-  temperature: 0.9
+  temperature: 0.9  # Lower = more stable, higher = more creative (try 0.6 / 0.5 for cleaner text)
   max_new_tokens: 300
