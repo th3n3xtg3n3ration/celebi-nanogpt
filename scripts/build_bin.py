@@ -3,6 +3,10 @@ import argparse
 
 
 def main():
+    """
+    Converts a raw text file (e.g. train.txt) into a raw binary file (e.g. train.bin)
+    containing simple UTF-8 bytes.
+    """
     ap = argparse.ArgumentParser()
     ap.add_argument("--in", dest="inp", required=True, help="train.txt (utf-8)")
     ap.add_argument("--out", dest="out", required=True, help="data/train.bin")

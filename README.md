@@ -23,6 +23,14 @@ pip install -r requirements.txt
 python scripts/download_oscar_sample.py --langs tr en --docs_per_lang 3000 --out_dir data
 ```
 
+> **Note**: OSCAR might be gated or temporarily suspended on Hugging Face. If you have access, the above works. Otherwise, we recommend using Wikipedia:
+
+### Recommended (non-gated): Wikipedia
+
+```bash
+python scripts/download_wikipedia_sample.py --langs tr en --docs_per_lang 3000 --out_dir data
+```
+
 This command produces:
 - `data/train.bin`
 - `data/val.bin`

@@ -4,6 +4,9 @@ import torch
 
 
 def read_bin(path: str):
+    """
+    Reads a binary file using numpy memmap (uint8 read-only).
+    """
     assert os.path.exists(path), f"Not found: {path}"
     return np.memmap(path, dtype=np.uint8, mode="r")
 
@@ -22,6 +25,12 @@ class BinDataset:
         self.device = device
 
     def get_batch(self):
+        """
+        Samples a random batch of blocks from the dataset.
+        Returns:
+            x (B, T): inputs
+            y (B, T): targets (shifted by 1)
+        """
         n = len(self.data)
         T = self.block_size
         B = self.batch_size

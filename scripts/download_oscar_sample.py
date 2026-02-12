@@ -4,6 +4,10 @@ from datasets import load_dataset
 
 
 def main():
+    """
+    Downloads a streaming sample of the OSCAR dataset (unshuffled_deduplicated)
+    for specified languages, and saves them as raw UTF-8 bytes (train.bin, val.bin).
+    """
     ap = argparse.ArgumentParser()
     ap.add_argument("--langs", nargs="+", default=["tr", "en"])
     ap.add_argument("--docs_per_lang", type=int, default=3000)

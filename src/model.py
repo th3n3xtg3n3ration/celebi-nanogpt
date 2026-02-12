@@ -5,6 +5,9 @@ import torch.nn.functional as F
 
 
 class RMSNorm(nn.Module):
+    """
+    Root Mean Square Layer Normalization.
+    """
     def __init__(self, dim: int, eps: float = 1e-6):
         super().__init__()
         self.eps = eps
@@ -16,6 +19,9 @@ class RMSNorm(nn.Module):
 
 
 class CausalSelfAttention(nn.Module):
+    """
+    Multi-head self-attention with causal masking.
+    """
     def __init__(self, n_embd: int, n_head: int, block_size: int, dropout: float):
         super().__init__()
         assert n_embd % n_head == 0
@@ -51,6 +57,10 @@ class CausalSelfAttention(nn.Module):
 
 
 class MLP(nn.Module):
+    """
+    Feed-forward network (Position-wise).
+    Propels embeddings from n_embd -> 4*n_embd -> n_embd.
+    """
     def __init__(self, n_embd: int, dropout: float):
         super().__init__()
         self.fc1 = nn.Linear(n_embd, 4 * n_embd, bias=False)
@@ -65,6 +75,9 @@ class MLP(nn.Module):
 
 
 class Block(nn.Module):
+    """
+    Transformer Block: RMSNorm -> Attention -> RMSNorm -> MLP
+    """
     def __init__(self, n_embd: int, n_head: int, block_size: int, dropout: float):
         super().__init__()
         self.n1 = RMSNorm(n_embd)
@@ -79,6 +92,9 @@ class Block(nn.Module):
 
 
 class GPT(nn.Module):
+    """
+    Full GPT Language Model.
+    """
     def __init__(self, vocab_size: int, block_size: int, n_layer: int, n_head: int, n_embd: int, dropout: float):
         super().__init__()
         self.vocab_size = vocab_size
@@ -93,6 +109,14 @@ class GPT(nn.Module):
         self.head = nn.Linear(n_embd, vocab_size, bias=False)
 
     def forward(self, idx, targets=None):
+        """
+        Forward pass.
+        Args:
+            idx: (B, T) indices
+            targets: (B, T) optional target indices for loss
+        Returns:
+            logits, loss
+        """
         B, T = idx.shape
         pos = torch.arange(0, T, device=idx.device)
         x = self.tok(idx) + self.pos(pos)[None, :, :]
@@ -111,6 +135,9 @@ class GPT(nn.Module):
 
     @torch.no_grad()
     def generate(self, prompt_bytes: bytes, max_new: int, temperature: float, device: str) -> bytes:
+        """
+        Generates new bytes given a prompt byte sequence.
+        """
         self.eval()
         idx = torch.tensor(list(prompt_bytes), dtype=torch.long, device=device)[None, :]
 

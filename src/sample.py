@@ -6,6 +6,9 @@ from .model import GPT
 
 
 def main():
+    """
+    Loads a checkpoint and generates text based on a prompt.
+    """
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="configs/nano.yaml")
     ap.add_argument("--ckpt", required=True)

@@ -9,6 +9,9 @@ from .model import GPT
 
 
 def save_ckpt(out_dir: str, step: int, model, opt, cfg: dict):
+    """
+    Saves the model state, optimizer state, and config to a checkpoint file.
+    """
     ensure_dir(out_dir)
     path = os.path.join(out_dir, f"ckpt_step{step}.pt")
     torch.save(
@@ -18,6 +21,9 @@ def save_ckpt(out_dir: str, step: int, model, opt, cfg: dict):
 
 
 def main():
+    """
+    Main training loop. Pretrains the GPT model on binary data.
+    """
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="configs/nano.yaml")
     args = ap.parse_args()
