@@ -1,0 +1,29 @@
+seed: 42
+device: auto   # auto -> mps/cuda/cpu
+
+dataset:
+  train_bin: data/train.bin
+  val_bin: data/val.bin
+  block_size: 128
+  batch_size: 32
+
+model:
+  vocab_size: 256
+  n_layer: 4
+  n_head: 4
+  n_embd: 256
+  dropout: 0.1
+
+train:
+  max_steps: 3000
+  lr: 3.0e-4
+  weight_decay: 0.1
+  grad_clip: 1.0
+  eval_every: 300
+  eval_batches: 20
+  save_every: 300
+  out_dir: out/nano_pretrain
+
+sample:
+  temperature: 0.9
+  max_new_tokens: 300
